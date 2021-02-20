@@ -21,9 +21,10 @@ jobs:
           node-version: '14'
 
       - name: Install dependencies
-        run: | 
-              npm ci 
-              npm install typescript -g
+        run: npm ci 
 
       - name: Run tests
         run: npm test
+
+      - name: Run Eslint
+        run: npm run lint
