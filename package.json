@@ -3,28 +3,35 @@
   "version": "1.0.0",
   "description": "Record information about TS3 server to InfluxDB",
   "main": "entrypoint.js",
+  "type": "module",
   "scripts": {
-    "nodemon": "nodemon src/entrypoint.js --watch src/**/*.js --ignore src/**/*.spec.js",
+    "nodemon": "nodemon src/entrypoint.js --ignore src/**/*.spec.js",
     "lint": "eslint .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"No test specified\" && exit 0"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Jontzii/Teamspeak-Data-Recorder.git"
   },
   "keywords": [],
-  "author": "Jontzii",
+  "author": "Jontzi",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Jontzii/Teamspeak-Data-Recorder/issues"
   },
   "homepage": "https://github.com/Jontzii/Teamspeak-Data-Recorder#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "node-influx": "^1.0.2",
     "ts3-nodejs-library": "^3.2.0"
   },
   "devDependencies": {
     "eslint": "^7.20.0",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.3.1",
+    "mocha": "^8.3.0",
     "nodemon": "^2.0.7"
   }
 }
