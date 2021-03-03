@@ -12,6 +12,21 @@ const TSInfo = {
   Password: process.env.TS_PASSWORD
 }
 
+/**
+ * Query interval in seconds
+ */
+const INTERVAL = parseInt(process.env.QUERY_INTERVAL || '10')
+
+// Influx variables
+// You can generate a Token from the "Tokens Tab" in the UI
+const influxToken = process.env.INFLUX_TOKEN
+const influxOrg = process.env.INFLUX_ORG
+const influxBucket = process.env.INFLUX_BUCKET
+
 export {
-  TSInfo
+  INTERVAL,
+  TSInfo,
+  influxBucket,
+  influxOrg,
+  influxToken
 }

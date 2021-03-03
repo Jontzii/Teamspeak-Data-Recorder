@@ -7,7 +7,7 @@ let QueryClient
  * Closes connection to the Teamspeak server.
  */
 const closeTeamspeakConnection = async () => {
-  console.log('Closing Teamspeak connection')
+  console.info('Closing Teamspeak connection')
 
   if (QueryClient) {
     await QueryClient.quit()
@@ -24,17 +24,18 @@ const closeTeamspeakConnection = async () => {
  */
 const connectToTeamspeak = (ConnectionInfo) => {
   return new Promise((resolve, reject) => {
+    console.info('Opening connection with the TS3 server')
+
     if (QueryClient) {
       // Active connection is already established
-      console.log('Connection to the Teamspeak server already active')
+      console.info('FINISHED')
       resolve(QueryClient)
     } else {
       // Create parameters for new connection
       createConnectionParams(ConnectionInfo)
         .then((params) => ts3.TeamSpeak.connect(params))
         .then((ts) => {
-          console.log('Successfully connected to the Teamspeak server')
-
+          console.info('FINISHED')
           QueryClient = ts
           resolve(ts)
         })
@@ -80,7 +81,7 @@ const createConnectionParams = (ConnectionInfo) => {
  */
 const createClientData = () => {
   return new Promise((resolve, reject) => {
-    console.log('Creating client data')
+    console.info('\nCreating client data @ ' + new Date().toISOString())
 
     const ClientData = {
       count: 0,
@@ -90,19 +91,24 @@ const createClientData = () => {
     connectToTeamspeak(TSInfo)
       .then(async (teamspeak) => {
         teamspeak.clientList({ clientType: 0 })
-          .then((clientList) => teamspeak.clientInfo(clientList))
           .then((clients) => {
-            console.log('Successfully fetched clients')
+            console.info('Fetched ' + clients.length + ' client(s)')
+
             ClientData.count = clients.length
-            ClientData.clients = clients
-          })
-          .catch((err) => {
-            console.log('Error while retrieving clients: ' + err)
+
+            clients.forEach(client => {
+              ClientData.clients.push(client.uniqueIdentifier)
+            })
           })
           .finally(() => closeTeamspeakConnection())
-          .then(() => resolve(ClientData))
+          .then(() => {
+            console.info('FINISHED')
+            resolve(ClientData)
+          })
       })
-      .catch((err) => reject(err))
+      .catch((e) => {
+        reject(e)
+      })
   })
 }
 
