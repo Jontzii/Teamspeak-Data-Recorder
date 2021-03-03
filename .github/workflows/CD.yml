@@ -48,5 +48,5 @@ jobs:
           context: ${{env.working-directory}}
           file: ${{env.working-directory}}/Dockerfile
           platforms: linux/amd64
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/simple-ts3-api:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/ts-user-recorder:latest
           
