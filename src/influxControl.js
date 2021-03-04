@@ -1,7 +1,7 @@
 import { InfluxDB, Point } from '@influxdata/influxdb-client'
 import * as env from './env_variables.js'
 
-const client = new InfluxDB({ url: `${env.influxUrl}:${env.influxPort}`, token: env.influxToken })
+const client = new InfluxDB({ url: `http://${env.influxUrl}:${env.influxPort}`, token: env.influxToken })
 const writeApi = client.getWriteApi(env.influxOrg, env.influxBucket)
 writeApi.useDefaultTags({ host: env.influxHost })
 
