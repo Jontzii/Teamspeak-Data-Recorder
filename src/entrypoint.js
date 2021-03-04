@@ -9,7 +9,7 @@ const entrypoint = () => {
     })
     .catch(e => {
       console.info('Finished with ERROR')
-      console.error(e)
+      console.error(e.message)
     })
 }
 

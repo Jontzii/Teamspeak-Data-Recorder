@@ -39,9 +39,9 @@ const connectToTeamspeak = (ConnectionInfo) => {
           QueryClient = ts
           resolve(ts)
         })
-        .catch((err) => {
+        .catch((e) => {
           QueryClient = null
-          reject(err)
+          reject(e)
         })
     }
   })
