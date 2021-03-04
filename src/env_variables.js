@@ -19,14 +19,20 @@ const INTERVAL = parseInt(process.env.QUERY_INTERVAL || '10')
 
 // Influx variables
 // You can generate a Token from the "Tokens Tab" in the UI
+const influxUrl = process.env.INFLUX_URL
+const influxPort = process.env.INFLUX_PORT
 const influxToken = process.env.INFLUX_TOKEN
 const influxOrg = process.env.INFLUX_ORG
 const influxBucket = process.env.INFLUX_BUCKET
+const influxHost = process.env.INFLUX_HOST
 
 export {
   INTERVAL,
   TSInfo,
+  influxUrl,
+  influxPort,
   influxBucket,
   influxOrg,
-  influxToken
+  influxToken,
+  influxHost
 }

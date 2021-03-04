@@ -1,9 +1,9 @@
 import { InfluxDB, Point } from '@influxdata/influxdb-client'
-import { influxBucket, influxOrg, influxToken } from './env_variables.js'
+import * as env from './env_variables.js'
 
-const client = new InfluxDB({ url: 'http://46.101.230.97:8086', token: influxToken })
-const writeApi = client.getWriteApi(influxOrg, influxBucket)
-writeApi.useDefaultTags({ host: 'DigitalOcean-Droplet' })
+const client = new InfluxDB({ url: `${env.influxUrl}:${env.influxPort}`, token: env.influxToken })
+const writeApi = client.getWriteApi(env.influxOrg, env.influxBucket)
+writeApi.useDefaultTags({ host: env.influxHost })
 
 /** Closes write API */
 const closeWriteApi = () => {
