@@ -6,7 +6,7 @@ const entrypoint = () => {
   console.info('\nSTARTING @ ' + new Date().toISOString())
   clientData()
     .then(res => writeData(res))
-    .then(() => console.info('FINISHED @ ' + new Date().toISOString()))
+    .then(() => console.info('COMPLETED @ ' + new Date().toISOString()))
     .catch(e => {
       console.info('Finished with ERROR')
       console.error(e.message)
@@ -27,7 +27,7 @@ const intervalObj = setInterval(() => {
  * Graceful exit
  */
 process.on('SIGTERM', () => {
-  console.info('Exiting...')
+  console.info('SIGTERM Received')
   closeWriteApi()
   clearInterval(intervalObj)
   console.info('Ready to exit')
