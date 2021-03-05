@@ -3,10 +3,10 @@ import { closeWriteApi, writeData } from './influxControl.js'
 import { INTERVAL } from './env_variables.js'
 
 const entrypoint = () => {
+  console.info('\nSTARTING @ ' + new Date().toISOString())
   clientData()
-    .then(res => {
-      writeData(res)
-    })
+    .then(res => writeData(res))
+    .then(() => console.info('FINISHED @ ' + new Date().toISOString()))
     .catch(e => {
       console.info('Finished with ERROR')
       console.error(e.message)

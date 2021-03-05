@@ -81,8 +81,6 @@ const createConnectionParams = (ConnectionInfo) => {
  */
 const createClientData = () => {
   return new Promise((resolve, reject) => {
-    console.info('\nCreating client data @ ' + new Date().toISOString())
-
     const ClientData = {
       count: 0,
       clients: []
@@ -92,8 +90,6 @@ const createClientData = () => {
       .then(async (teamspeak) => {
         teamspeak.clientList({ clientType: 0 })
           .then((clients) => {
-            console.info('Fetched ' + clients.length + ' client(s)')
-
             ClientData.count = clients.length
 
             clients.forEach(client => {
